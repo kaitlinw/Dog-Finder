@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "charset": "utf-8",
     "declaration": false,
     "declarationMap": false,
+    "esModuleInterop": true,
     "importHelpers": true,
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "module": "commonjs",
@@ -24,6 +26,6 @@
     "sourceMap": true,
     "tsBuildInfoFile": "./.cache/typescript"
   },
-  "files": ["./src/index.ts"],
+  "files": ["src/index.tsx"],
   "include": ["./**/*"]
 }

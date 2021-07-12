@@ -3,16 +3,20 @@ import '../upload-component/upload-component';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import React, { FC } from 'react';
 
-const DogIdentifierComponent: FC<Props> = ({
+interface Props {
+  identifiedBreed: string;
+  setIdentifiedBreed: React.Dispatch<React.SetStateAction<string>>;
+  uploadedImage: ImageData;
+}
+
+const BreedIdentifier: FC<Props> = ({
   identifiedBreed,
   uploadedImage,
   setIdentifiedBreed,
-}: Props): JSX.Element => {
-  const loadPredictions = async (): void => {
-    // Load the model.
+}: Props): string | null => {
+  const loadPredictions = async (): Promise<string> => {
     const model = await mobilenet.load();
 
-    // Classify the image.
     const predictions = await model.classify(uploadedImage);
 
     const identifiedBreedList = predictions[0].className;
@@ -30,4 +34,4 @@ const DogIdentifierComponent: FC<Props> = ({
   return null;
 };
 
-export default DogIdentifierComponent;
+export default BreedIdentifier;

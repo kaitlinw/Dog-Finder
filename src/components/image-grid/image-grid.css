@@ -1,3 +1,6 @@
-.flexbox {
-  display: flex;
+.grid {
+  max-width: 1500px;
+}
+.grid-item {
+  width: 500px;
 }

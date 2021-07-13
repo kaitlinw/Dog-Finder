@@ -1,57 +1,48 @@
-import React, { FC } from 'react';
-import ImageUploading, { ImageListType } from 'react-images-uploading';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+// Import { Container } from './upload-component.style.ts'
+
+interface Props {
+  setUploadedImage: React.Dispatch<React.SetStateAction<string>>;
+}
 
 const UploadComponent: FC<Props> = ({
   setUploadedImage,
 }: Props): JSX.Element => {
-  const [image, setImages] = React.useState([]);
-  const maxNumber = 1;
+  const [previewImage, setPreviewImage] = useState('');
 
-  const onChange = (imageList: ImageListType): void => {
-    setImages(imageList as never[]);
-    setUploadedImage(document.querySelector('#uploaded-image'));
+  useEffect(() => {
+    if (previewImage === '') {
+      setPreviewImage(undefined);
+    }
+  });
+
+  const handleUploadPreview = (event: ChangeEvent): void => {
+    const reader = new FileReader();
+    const file = event.target.files[0];
+    const preview = document.querySelector('img');
+
+    reader.addEventListener(
+      'load',
+
+      (): void => {
+        preview.src = reader.result;
+        setPreviewImage(preview.src);
+        setUploadedImage(preview.src);
+      },
+      false,
+    );
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
-    <>
+    <div>
       <h3>Upload your favourite image of a dog to find out its breed.</h3>
-      <ImageUploading value={image} maxNumber={maxNumber} onChange={onChange}>
-        {({
-          imageList,
-          onImageUpload,
-          onImageRemove,
-          isDragging,
-          dragProps,
-        }: Props): JSX.Element => (
-          <div className="upload-image-wrapper">
-            <button
-              className="upload-img-btn"
-              style={isDragging ? { color: 'blue' } : undefined}
-              onClick={onImageUpload}
-              {...dragProps}
-            >
-              Click or Drop here
-            </button>
-
-            {imageList.map(
-              (image, index): JSX.Element => (
-                <div key={index} className="image-preview-item">
-                  <img
-                    src={image.dataURL}
-                    id="uploaded-image"
-                    alt=""
-                    width="400"
-                  />
-                  <div className="image-item__btn-wrapper">
-                    <button onClick={() => onImageRemove(index)}>Remove</button>
-                  </div>
-                </div>
-              ),
-            )}
-          </div>
-        )}
-      </ImageUploading>
-    </>
+      <input type="file" onChange={handleUploadPreview} />
+      <img src={previewImage} width="400" />
+    </div>
   );
 };
 

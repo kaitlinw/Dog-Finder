@@ -6,19 +6,18 @@ import React, { FC } from 'react';
 interface Props {
   identifiedBreed: string;
   setIdentifiedBreed: React.Dispatch<React.SetStateAction<string>>;
-  uploadedImage: ImageData;
+  uploadedImage: string;
 }
 
 const BreedIdentifier: FC<Props> = ({
   identifiedBreed,
   uploadedImage,
   setIdentifiedBreed,
-}: Props): string | null => {
-  const loadPredictions = async (): Promise<string> => {
+}: Props): void => {
+  const loadPredictions = async (): Promise<unknown> => {
     const model = await mobilenet.load();
 
     const predictions = await model.classify(uploadedImage);
-
     const identifiedBreedList = predictions[0].className;
     const selectedBreed = identifiedBreedList.split(', ')[0];
 

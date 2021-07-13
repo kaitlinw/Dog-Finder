@@ -14,8 +14,12 @@ const ResultsComponent: FC<Props> = ({
 
   useEffect(async (): void => {
     const transformedBreedName = identifiedBreed.toLowerCase();
-    await getDogImages(transformedBreedName).then(imageUrl => {
-      setDogImages(imageUrl.message);
+    await getDogImages(transformedBreedName).then(response => {
+      if (response.code === '400') {
+        return 'Sorry, thats not a dog!';
+      }
+
+      setDogImages(response.message);
     });
   }, [identifiedBreed]);
 

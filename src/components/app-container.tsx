@@ -6,7 +6,7 @@ import UploadComponent from './upload-component/upload-component';
 
 const AppContainer: FC = (): JSX.Element => {
   const [identifiedBreed, setIdentifiedBreed] = useState('');
-  const [uploadedImage, setUploadedImage] = useState('');
+  const [uploadedImage, setUploadedImage] = React.useState();
 
   return (
     <>

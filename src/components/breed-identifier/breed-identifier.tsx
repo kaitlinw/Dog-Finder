@@ -3,17 +3,11 @@ import '../upload-component/upload-component';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import React, { FC } from 'react';
 
-interface Props {
-  identifiedBreed: string;
-  setIdentifiedBreed: React.Dispatch<React.SetStateAction<string>>;
-  uploadedImage: string;
-}
-
-const BreedIdentifier: FC<Props> = ({
+const BreedIdentifier: FC = ({
   identifiedBreed,
   uploadedImage,
   setIdentifiedBreed,
-}: Props): void => {
+}: Props): null => {
   const loadPredictions = async (): Promise<unknown> => {
     const model = await mobilenet.load();
 
@@ -24,10 +18,11 @@ const BreedIdentifier: FC<Props> = ({
     setIdentifiedBreed(selectedBreed);
   };
 
+  // Loading state between image upload and model response
   if (!identifiedBreed && uploadedImage) {
     loadPredictions();
 
-    return 'loading breed...';
+    return <h2>loading breed...</h2>;
   }
 
   return null;

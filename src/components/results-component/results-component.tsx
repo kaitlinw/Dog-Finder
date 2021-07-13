@@ -11,14 +11,13 @@ const ResultsComponent: FC<Props> = ({
   identifiedBreed,
 }: Props): JSX.Element => {
   const [dogImages, setDogImages] = useState([]);
+  const [apiStatus, setApiStatus] = useState('');
 
   useEffect(async (): void => {
     const transformedBreedName = identifiedBreed.toLowerCase();
+    console.log(transformedBreedName);
     await getDogImages(transformedBreedName).then(response => {
-      if (response.code === '400') {
-        return 'Sorry, thats not a dog!';
-      }
-
+      setApiStatus(response.status);
       setDogImages(response.message);
     });
   }, [identifiedBreed]);
@@ -27,8 +26,13 @@ const ResultsComponent: FC<Props> = ({
     <>
       <h3>Your dog breed is...</h3>
       <h2>{identifiedBreed}</h2>
-      <p>See below for more images:</p>
-      <ImageGrid dogImages={dogImages} />
+      {apiStatus === 'success' && <ImageGrid dogImages={dogImages} />}
+      {apiStatus !== 'success' && (
+        <h3>
+          Something went wrong loading the image gallery. Try a different breed
+          of dog...
+        </h3>
+      )}
     </>
   );
 };

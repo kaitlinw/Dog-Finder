@@ -1,17 +1,9 @@
-# Front End Assignment Boilerplate
+# Dog Finder
 
-This project can serve as a baseline for your front end assignment. Take some
-time to familiarize yourself with the structure, configuration and scripts.
-Depending on how you choose to implement your solution you may find that you
-need to delete or change parts of this base setup — feel free to do so. We have
-set this project up create a more accurate image of what our expectations are,
-and to help you get started. If you feel like it does not help you on your way,
-feel free to discard it and create your own. However, it might prove useful to
-look through this boilerplate regardless to get a better idea of our
-expectations.
+This application allows you to upload an image of a dog.
 
-Simply clone this project and get started. You can replace this readme with your
-own when you are finished.
+The app will return the dog's breed as well as an image gallery of dogs of same
+breed.
 
 ## Available scripts
 
@@ -35,3 +27,24 @@ To test you application, use:
 ```bash
 npm run test
 ```
+
+## Design choices
+
+Based on my experience with functional components, breaking the logic out into
+separate components felt like a cleaner approach especially for readability. The
+API could be handled separate from the component.
+
+## with more time
+
+With more time I would:
+
+- make the application beautiful.
+- perfect the typing.
+- ensure dog breeds with subtypes (i.e. toy poodle -> poodle-toy") were able to
+  be called from the API.
+- write a full suite of tests.
+- upload to heroku.
+- manage errors better.
+- possibly restructure the application.
+- get custom image upload code working.
+- write clean git messages.

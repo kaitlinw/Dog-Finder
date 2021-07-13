@@ -5,6 +5,12 @@ This application allows you to upload an image of a dog.
 The app will return the dog's breed as well as an image gallery of dogs of same
 breed.
 
+I have included two images that result in a successful and unsuccesful result
+with the API. `./example-images-for-testing/`
+
+Unfortunately my toy poodle requires a bit more string manipulation for the API
+to work.
+
 ## Available scripts
 
 To start the project, simply run:

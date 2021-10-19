@@ -3,7 +3,7 @@
     "@tensorflow-models/mobilenet": "^2.1.0",
     "@tensorflow/tfjs": "^2.8.4",
     "@types/styled-components": "^5.1.11",
-    "chromium": "^3.0.2",
+    "chromium": "^3.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-images-uploading": "^3.1.2",
